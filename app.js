@@ -20,8 +20,8 @@ var app;
 			oThis.persons.push({name:nam,rating:rat});
 		};
 
-		var addNew=function(_code){
-			oThis.news.push(_code);
+		var addNew=function(_code,_auth,_date){
+			oThis.news.push({newsCode:_code,author:_auth,creationTime:_date});
 		};
 
 		this.getTop=function(count){
@@ -49,6 +49,6 @@ var app;
 		addPerson("pm",200);
 		addPerson("kq",150);
 
-		addNew('<div><h3>Content:</h3>hello, <b>my name is</b> jQuery.<h3>Node Names:</h3><ol><li>#text</li><li>B</li><li>#text</li></ol></div>');
+		addNew("<h3>This are News</h3>");
 	}]);
 })();
