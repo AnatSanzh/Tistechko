@@ -39,7 +39,10 @@
 					<font color=gold size=4>News</font>
 				<div ng-repeat="nw in main.news">
 					<hr>
-					{{$.parseHTML( nw )}}
+					{{$.parseHTML( nw.newsCode )}}
+					<hr>
+					<img src="person.png" class="img-crcle" width=40 height=40>
+					<a href="profile.html#id={{nw.author.id}}">{{nw.author}}</a>
 				</div>
 				</div>
 			</div>
