@@ -17,11 +17,13 @@ var app;
 		};
 
 		var addPerson=function(nam,rat){
-			oThis.persons.push({name:nam,rating:rat});
+			var pers={name:nam,rating:rat,id:Date.now().toString()};
+			oThis.persons.push({name:nam,rating:rat,id:Date.now().toString()});
+			return pers;
 		};
 
-		var addNew=function(_code,_auth,_date){
-			oThis.news.push({newsCode:_code,author:_auth,creationTime:_date});
+		var addNew=function(_code,_auth){
+			oThis.news.push({newsCode:_code,author:_auth,creationTime:Date.now()});
 		};
 
 		this.getTop=function(count){
@@ -47,8 +49,8 @@ var app;
 		addPerson("bt",110);
 		addPerson("ev",1000);
 		addPerson("pm",200);
-		addPerson("kq",150);
+		var p = addPerson("kq",150);
 
-		addNew("<h3>This are News</h3>");
+		addNew("<h3>This are News</h3>",p);
 	}]);
 })();
