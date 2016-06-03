@@ -8,6 +8,7 @@ var app;
 		var d=new Date();
 		this.news=[];
 		this.persons=[];
+		this.competitions=[];
 
 		var a=function(){
 			d=new Date();
@@ -17,12 +18,12 @@ var app;
 		};
 
 		var addPerson=function(nam,rat){
-			var pers={name:nam,rating:rat,id:Date.now().toString()};
-			oThis.persons.push({name:nam,rating:rat,id:Date.now().toString()});
+			var pers={name:nam,rating:rat,id:Date.now().toString(),cachedProblems:[],email:"",group:"",school:""};
+			oThis.persons.push(pers);
 			return pers;
 		};
 
-		var addNew=function(_code,_auth){
+		var addNews=function(_code,_auth){
 			oThis.news.push({newsCode:_code,author:_auth,creationTime:Date.now()});
 		};
 
@@ -43,6 +44,25 @@ var app;
 			return blist;
 		};
 
+		var getPersons=function(){
+			return oThis.persons;
+		};
+
+		var getPersonByID=function(_id){
+			pers=getPersons();
+			for (var i = 0; i < pers.length; i++) {
+				if(pers[i].id===_id)
+					return pers[i];
+			};
+			return {};
+		};
+
+		var addCompetition=function(nam,_type,opts){
+			var comp={name:nam,type:_type,persons:opts};
+			oThis.competitions.push(comp);
+			return comp;
+		};
+
 		a();
 
 		addPerson("na",100);
@@ -51,6 +71,6 @@ var app;
 		addPerson("pm",200);
 		var p = addPerson("kq",150);
 
-		addNew("<h3>This are News</h3>",p);
+		addNews("<h3>This are News</h3>",p);
 	}]);
 })();
