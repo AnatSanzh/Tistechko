@@ -1,65 +1,111 @@
-	<!DOCTYPE html>
-	<html ng-app="Tistechko">
-	<head>
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-		<script type="text/javascript" src="angular.min.js"></script>
-		<script type="text/javascript" src="app.js"></script>
-		<script type="text/javascript" src="jquery-1.12.4.min.js"></script>
-		<link rel="stylesheet" type="text/css" href="bootstrap.min.css">
-	</head>
-	<body ng-controller="MainController as main">
-		<nav class="navbar navbar-inverse bg-primary">
-			<div class="container-fluid">
-				<div class="navbar-header">
-					<a class="navbar-brand" href="#">
-						<img alt="Brand" src="">
-					</a>
-				</div>
-				<div class="collapse navbar-collapse">
-					<ul class="nav navbar-nav">
-						<li class="nav-item"><a href="#a" class="nav-link">Link 1</a></li>
-						<li class="nav-item"><a href="#a" class="nav-link">Link 2</a></li>
-						<li class="nav-item"><a href="#a" class="nav-link">Link 3</a></li>
-						<li class="nav-item"><a href="#a" class="nav-link">Link 4</a></li>
-						<li class=""><font color=gold>{{main._time}}<br>{{main._date}}</font></li>
-						<li class="nav-item"><img src="person.png" class="img-circle" width=40 height=40><center><a href="#a" class="nav-link">Exit</a></center></li>
-						<li class=""><img src="ukr.png" width=30 height=20><br><img src="eng.png" width=30 height=20></li>
-						<li class=""><center><a href="#a" class="nav-link">UA</a><br><a href="#a" class="nav-link">UK</a></center></li>
-					</ul>
+<!DOCTYPE html>
+<html ng-app="Tistechko">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <script type="text/javascript" src="/static/js/angular.min.js"></script>
+    <script type="text/javascript" src="/static/js/app.js"></script>
+    <script type="text/javascript" src="/static/js/jquery-1.12.4.min.js"></script>
 
-				</div>
-			</div>
-		</nav>
-		<div class="row">
-			<div class="col-xs-1">
+    <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.min.css">
+    <style>
+      .lang-icon {height: 1.2em; padding: 0; }
+      .accent-text {color: gold; }
+      .icon-person {
+        width: 30px;
+        height: 30px;
+        margin: 10px;
+        background-image: url("/static/img/person.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
 
-			</div>
-			<div class="col-xs-7">
-				<div class="well">
-					<font color=gold size=4>News</font>
-				<div ng-repeat="nw in main.news">
-					<hr>
-					{{$.parseHTML( nw.newsCode )}}
-					<hr>
-					<img src="person.png" class="img-circle" width=40 height=40>
-					<a href="profile.html#id={{nw.author.id}}">{{nw.author.name}}</a>
-				</div>
-				</div>
-			</div>
-			<div class="col-xs-1">
+      }
+      .layout-column {
+        display: flex !important;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+      }
+      .layout-row {
+        display: flex !important;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+      }
+      .navbar.bg-primary {background-color: #0F2B68; }
+      nav.navbar {border-radius: 0; }
+      .navbar p {margin: 0; }
+    </style>
+  </head>
+  <body ng-controller="MainController as main">
+    <nav class="navbar navbar-inverse bg-primary">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">
+            <img alt="Tistechko" src="">
+          </a>
+        </div>
 
-			</div>
-			<div class="col-xs-2 well">
-				<center>Rating</center>
-				<ul class="list-inline" ng-repeat="item in main.getTop(3)">
-					<hr>
-					<li><img src="person.png" class="img-circle" width=40 height=40>
-					{{item.name}}
-				</li>
-					<li class="text-right">{{item.rating}}</li>
-					<br>
-				</div>
-			</div>
-		</div>
-	</body>
-	</html>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="nav-item"><a href="#a" class="nav-link">Link 1</a></li>
+            <li class="nav-item"><a href="#a" class="nav-link">Link 2</a></li>
+            <li class="nav-item"><a href="#a" class="nav-link">Link 3</a></li>
+            <li class="nav-item"><a href="#a" class="nav-link">Link 4</a></li>
+          </ul>
+
+          <ul class="nav navbar-nav navbar-right layout-row">
+            <!-- Just for make height of parent such as header of all header -->
+            <li class="nav-item"><a href="#a" class="nav-link">&nbsp;</a></li>
+            <li class="accent-text layout-column">
+              <p>{{main._time}}</p>
+              <p>{{main._date}}</p>
+            </li>
+            <li class="nav-item layout-column">
+              <a class="icon icon-person img-circle nav-icon">&nbsp;</a>
+            </li>
+            <li class="layout-row">
+              <a href="#a" class="">
+                <img src="/static/img/ukr.png" class="lang-icon" alt="Ukrainian"\>
+              </a>
+              <a href="#a" class="">
+                <img src="/static/img/eng.png" class="lang-icon" alt="English"\>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="row">
+      <div class="col-xs-1">
+
+      </div>
+      <div class="col-xs-7">
+        <div class="well">
+          <font color=gold size=4>News</font>
+        <div ng-repeat="nw in main.news">
+          <hr>
+          {{$.parseHTML( nw.newsCode )}}
+          <hr>
+          <img src="/static/img/person.png" class="img-circle" width=40 height=40>
+          <a href="profile.html#id={{nw.author.id}}">{{nw.author.name}}</a>
+        </div>
+        </div>
+      </div>
+      <div class="col-xs-1">
+
+      </div>
+      <div class="col-xs-2 well">
+        <center>Rating</center>
+        <ul class="list-inline" ng-repeat="item in main.getTop(3)">
+          <hr>
+          <li><img src="/static/img/person.png" class="img-circle" width=40 height=40>
+          {{item.name}}
+        </li>
+          <li class="text-right">{{item.rating}}</li>
+          <br>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
